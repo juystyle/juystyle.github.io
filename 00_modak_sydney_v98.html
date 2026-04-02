@@ -321,9 +321,9 @@ body::before{
 .sub-btn.off{background:var(--s3);color:var(--i300);cursor:default}
 
 /* ── OVERLAYS ────────────────────────────────────────────────────────────── */
-.overlay{position:absolute;top:0;left:0;right:0;bottom:64px;background:var(--bg);z-index:80;display:flex;flex-direction:column;overflow:hidden;transform:translateX(100%);transition:transform .3s cubic-bezier(.32,.72,0,1)}
+.overlay{position:absolute;top:0;left:0;right:0;bottom:64px;background:var(--bg);z-index:95;display:flex;flex-direction:column;overflow:hidden;transform:translateX(100%);transition:transform .3s cubic-bezier(.32,.72,0,1)}
 .overlay.show{transform:translateX(0)}
-.sheet-bg{position:absolute;inset:0;background:rgba(0,0,20,.5);z-index:90;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet-bg{position:absolute;inset:0;background:rgba(0,0,20,.5);z-index:96;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .25s}
 .sheet-bg.show{opacity:1;pointer-events:all}
 .sheet-body{background:var(--card);border-radius:26px 26px 0 0;width:100%;padding:0 20px 34px;transform:translateY(44px);transition:transform .3s cubic-bezier(.32,.72,0,1);max-height:84%;overflow-y:auto;scrollbar-width:none}
 .sheet-body::-webkit-scrollbar{display:none}
@@ -389,7 +389,7 @@ body::before{
 .auth-btn{height:54px;border-radius:16px;border:none;display:flex;align-items:center;justify-content:center;gap:10px;font-family:var(--fkr);font-size:15px;font-weight:700;cursor:pointer;transition:transform .12s,box-shadow .12s;width:100%}
 .auth-btn:active{transform:scale(.97)}
 .auth-btn-google{background:#fff;border:1.5px solid #E8EAED;color:#3C4043;box-shadow:0 1px 4px rgba(0,0,0,.08)}
-.auth-btn-phone{background:var(--p500);color:#fff;box-shadow:0 4px 16px rgba(58,111,247,.32)}
+.auth-btn-kakao{background:#FEE500;color:#3C1E1E;box-shadow:0 4px 16px rgba(254,229,0,.4)}.auth-btn-phone{background:var(--p500);color:#fff;box-shadow:0 4px 16px rgba(58,111,247,.32)}
 .auth-btn-guest{background:transparent;border:none;color:#98A2B3;font-size:13px;font-weight:500;height:40px}
 .auth-divider{display:flex;align-items:center;gap:12px;padding:0 24px;margin:4px 0}
 .auth-divider span{font-family:var(--fkr);font-size:12px;color:#C2C7D0;white-space:nowrap}
@@ -708,7 +708,7 @@ body::before{
     </div>
     <div class="dr-bd" id="dr-bd" onclick="closeDr()"></div>
     <div class="drawer" id="drawer">
-      <div class="dr-hd"><div class="dr-av" id="dr-av">J</div><div class="dr-nm" id="dr-nm">Juyoung</div><div class="dr-em" id="dr-em">juyoung@example.com</div></div>
+      <div class="dr-hd"><div class="dr-av" id="dr-av">J</div><div class="dr-nm" id="dr-nm">Juyoung</div><div class="dr-em" id="dr-em"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d9b3aca0b6acb7be99bca1b8b4a9b5bcf7bab6b4">[email&#160;protected]</a></div></div>
       <div class="dr-menu" id="dr-menu"></div>
       <div class="dr-ver">MODAK Sydney v1.3.0</div>
     </div>
@@ -723,7 +723,7 @@ body::before{
   <div class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>글쓰기 · 광고 옵션 선택</div>
 </div>
 
-<script data-cfasync="false">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false">
 
 var COMPLETED={};
 var DLG_CB=null;
@@ -881,6 +881,12 @@ function _authEntry(){
     +'</div>'
     +'<div class="auth-btns">'
     +pendingTxt
+    +'<button class="auth-btn auth-btn-kakao" onclick="_authLoginKakao()">'
+    +'<svg viewBox="0 0 24 24" fill="#3C1E1E" style="width:20px;height:20px">'
+    +'<path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.7 1.55 5.08 3.9 6.52L5 21l4.18-2.1c.9.18 1.84.3 2.82.3 5.52 0 10-3.48 10-7.8S17.52 3 12 3z"/>'
+    +'</svg>'
+    +'카카오톡으로 계속하기'
+    +'</button>'
     +'<button class="auth-btn auth-btn-google" onclick="_authLoginGoogle()">'
     +'<svg width="20" height="20" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.33 2.56 13.22l7.98 6.19C12.43 13.08 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-3.59-13.46-8.91l-7.98 6.19C6.51 42.67 14.62 48 24 48z"/></svg>'
     +'Google로 계속하기'
@@ -896,6 +902,17 @@ function _authEntry(){
 }
 
 /* ── Google 로그인 (데모) ──────────────────────────────── */
+
+function _authLoginKakao(){
+  // 실제: 카카오 JavaScript SDK → 카카오 로그인 → 프로필 수신
+  // 데모: 즉시 signed-in 처리 후 전화 인증으로 이동
+  USER.name='Juyoung';
+  USER.email='juyoung@kakao.com';
+  USER.googlePhotoUrl=null;
+  USER.authState='signed-in';
+  _AUTH.loginMethod='kakao';
+  _authGo('phone');
+}
 function _authLoginGoogle(){
   // 실제: Google OAuth → ID 토큰 → 서버 검증 → 프로필 정보 수신
   // 데모: 즉시 signed-in 처리 후 전화 인증으로 이동
@@ -1777,6 +1794,7 @@ function _trendMktCard(p, idx){
  * 혜택 쿠폰 화면 — 직원에게 보여주는 화면
  * ═══════════════════════════════════════════════════ */
 function openDealCoupon(id){
+  if(!requireSignIn('혜택 받기를')) return;
   var d=DEALS.find(function(x){return x.id===id;});
   if(!d)return;
   // 저장 처리
@@ -1847,7 +1865,7 @@ function contactMsg(label){
 }
 /* openMdt CTA용 — data-phone 속성에서 번호 읽어서 게이트 통과 후 연결 */
 function reqContact(type, el){
-  if(!requireSignIn('연락하기를')) return;
+  if(!requireVerified('연락하기를')) return;
   var phone = el && el.dataset && el.dataset.phone;
   if(type==='call') contactCall(phone||'', '전화를');
   else contactMsg('문자를');
@@ -1946,7 +1964,7 @@ var USER={
   suburb:'Strathfield, NSW',   // 지역 (온보딩/마이페이지에서 변경 가능)
   profileImg:null,         // 프로필 사진 (변경 가능, 마이페이지에서 수정)
   googlePhotoUrl:null,     // Google 로그인 시 자동 설정되는 구글 프로필 사진 URL
-  authState:'verified'     // 'guest' | 'signed-in' | 'verified' (데모: verified 고정)
+  authState:'guest'     // 'guest' | 'signed-in' | 'verified' (데모: verified 고정)
 };
 /* ── authState 설명 ─────────────────────────────────────
  * 'guest'     : 비로그인 상태. 브라우징만 가능.
@@ -2177,6 +2195,102 @@ function sharePost(id){
   row.appendChild(mkB("...","더보기","#f0f2f5",function(){if(navigator.share)navigator.share({title:title,url:url});else toast("더보기");}));
   s.appendChild(row);bg.appendChild(s);document.querySelector(".phone-frame").appendChild(bg);
 }
+
+function openMoreMenu(id, ti, isMdt) {
+  if (!requireSignIn('이 기능을')) return;
+  var old = document.getElementById('more-menu-bg');
+  if (old) old.remove();
+  var bg = document.createElement('div');
+  bg.id = 'more-menu-bg';
+  bg.style.cssText = 'position:absolute;inset:0;z-index:9999;';
+  bg.onclick = function(e) { if (e.target === bg) bg.remove(); };
+  var menu = document.createElement('div');
+  menu.style.cssText = 'position:absolute;top:58px;right:13px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.18);min-width:150px;';
+  function mkItem(icon, label, color, fn) {
+    var item = document.createElement('div');
+    item.style.cssText = 'display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;font-family:var(--fkr);font-size:14px;font-weight:600;color:' + (color||'var(--i800)') + ';transition:background .12s;border-bottom:1px solid var(--bd);';
+    item.innerHTML = icon + '<span>' + label + '</span>';
+    item.onclick = function() { bg.remove(); fn(); };
+    item.onmouseenter = function() { item.style.background = 'var(--s2)'; };
+    item.onmouseleave = function() { item.style.background = ''; };
+    return item;
+  }
+  var shareIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
+  var reportIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+  var shareItem = mkItem(shareIcon, '공유하기', 'var(--i800)', function() { openShareSheet(id, ti, isMdt); });
+  var reportItem = mkItem(reportIcon, '신고하기', '#FF3B30', function() { openReport(id, ti); });
+  reportItem.style.borderBottom = 'none';
+  menu.appendChild(shareItem);
+  menu.appendChild(reportItem);
+  bg.appendChild(menu);
+  document.querySelector('.phone-frame').appendChild(bg);
+}
+
+function openShareSheet(id, ti, isMdt) {
+  var old = document.getElementById('share-sheet-bg');
+  if (old) old.remove();
+  var all = JOBS.concat(ROOMS).concat(MARKET);
+  var post = all.find(function(x) { return x.id === id; });
+  var url = 'https://modak.app/post/' + id;
+  var bg = document.createElement('div');
+  bg.id = 'share-sheet-bg';
+  bg.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:flex-end;';
+  bg.onclick = function(e) { if (e.target === bg) bg.remove(); };
+  var sheet = document.createElement('div');
+  sheet.style.cssText = 'width:100%;background:#fff;border-radius:20px 20px 0 0;padding:0 0 32px;';
+  sheet.onclick = function(e) { e.stopPropagation(); };
+  var handle = document.createElement('div');
+  handle.style.cssText = 'width:36px;height:4px;background:#ddd;border-radius:2px;margin:12px auto 0;';
+  sheet.appendChild(handle);
+  var ttl = document.createElement('div');
+  ttl.style.cssText = 'font-family:var(--fkr);font-size:16px;font-weight:800;color:var(--i900);padding:14px 20px 18px;';
+  ttl.textContent = '공유하기';
+  sheet.appendChild(ttl);
+  var row = document.createElement('div');
+  row.style.cssText = 'display:flex;gap:0;padding:0 24px;';
+  function mkShareBtn(bgColor, iconSvg, label, labelColor, fn) {
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:opacity .13s;';
+    var circle = document.createElement('div');
+    circle.style.cssText = 'width:52px;height:52px;border-radius:50%;background:' + bgColor + ';display:flex;align-items:center;justify-content:center;';
+    circle.innerHTML = iconSvg;
+    var lbl = document.createElement('span');
+    lbl.style.cssText = 'font-family:var(--fkr);font-size:11px;font-weight:600;color:' + labelColor + ';';
+    lbl.textContent = label;
+    wrap.appendChild(circle); wrap.appendChild(lbl);
+    wrap.onmouseenter = function() { wrap.style.opacity = '.75'; };
+    wrap.onmouseleave = function() { wrap.style.opacity = '1'; };
+    wrap.onclick = function() { bg.remove(); fn(); };
+    return wrap;
+  }
+  var kakaoSvg = '<svg viewBox="0 0 24 24" fill="#3C1E1E" style="width:24px;height:24px"><path d="M12 3C6.48 3 2 6.48 2 10.8c0 2.7 1.55 5.08 3.9 6.52L5 21l4.18-2.1c.9.18 1.84.3 2.82.3 5.52 0 10-3.48 10-7.8S17.52 3 12 3z"/></svg>';
+  var copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" style="width:22px;height:22px"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+  row.appendChild(mkShareBtn('#FEE500', kakaoSvg, '카카오톡', '#3C1E1E', function() { toast('카카오톡으로 공유됩니다 💬'); }));
+  row.appendChild(mkShareBtn('#3C3C3E', copySvg, '링크 복사', 'var(--i600)', function() {
+    if (navigator.clipboard) navigator.clipboard.writeText(url).catch(function(){});
+    toast('링크가 복사됐어요 👍');
+  }));
+  sheet.appendChild(row);
+  bg.appendChild(sheet);
+  document.querySelector('.phone-frame').appendChild(bg);
+}
+
+function sponCall() {
+  closeSpon();
+  if (!requireSignIn('전화를')) return;
+  toast('📞 전화 연결');
+}
+function sponMsg() {
+  closeSpon();
+  if (!requireSignIn('문자를')) return;
+  toast('💬 문자 전송');
+}
+function dealCall(id) {
+  if (!requireSignIn('전화를')) return;
+  var _d = DEALS.find(function(x) { return x.id === id; });
+  if (_d) toast('📞 ' + _d.contact);
+}
+
 function openReport(postId,postTitle){
   RPT={postId:postId,postTitle:postTitle||'',reason:'',detail:''};
   var h=buildReportSheet(postTitle||'');
@@ -2245,8 +2359,13 @@ function renderPd(p){
   var html='<div class="pd-img">'+p.e+'<div class="pd-cnt">1 / 1</div>'
     +'<div class="pd-back" onclick="closePd()">'+I.bk+'</div>'
     +'<div class="pd-actions">'
-    '<div class="pd-act-btn'+(fav?' fav':'')+'" onclick="toggleFavPd(\''+id+'\')">'+(fav?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+'</div>'
-    '</div></div>'
+    +'<div class="pd-act-btn'+(fav?' fav':'')+'" onclick="toggleFavPd(\''+id+'\')">'
+    +(fav?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:19px;height:19px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i700)" stroke-width="2" style="width:19px;height:19px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')
+    +'</div>'
+    +'<div class="pd-act-btn" onclick="openMoreMenu(\''+id+'\',\''+esc(p.ti)+'\',false)">'
+    +'<svg viewBox="0 0 24 24" fill="currentColor" style="width:19px;height:19px"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>'
+    +'</div>'
+    +'</div></div>'
     +'<div class="scr"><div>'
     +'<div class="pd-sec"><div style="display:flex;align-items:center;gap:11px;margin-bottom:15px"><div class="pd-uav">'+avatarHtml(p.a,38,12)+'</div><div><div style="font-family:var(--fkr);font-size:13px;font-weight:700;color:var(--i800)">'+p.a+'</div><div style="display:flex;align-items:center;gap:4px;margin-top:3px">'+I.pin+'<span style="font-family:var(--fkr);font-size:11px;color:var(--i300)">'+p.s+'</span></div></div></div>'
     +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:11px"><span class="tg '+cc+'">'+p.t+'</span>'+(done?'<span class="tg-done">'+lbl+'</span>':'')+'</div>'
@@ -2310,12 +2429,12 @@ function openMdt(id){
     // floating 내비 버튼 — renderPd와 동일 구조
     '<div class="pd-back" onclick="closeMdt()">'+I.bk+'</div>'+
     '<div class="pd-actions">'+
-      
-      
-      
-      
-      '<div class="pd-act-btn'+(saved?' fav':'')+'" onclick="toggleMdtSave(\''+id+'\')">'+(saved?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+'</div>'+
-      
+    '<div class="pd-act-btn'+(saved?' fav':'')+'" onclick="toggleMdtSave(\''+id+'\')">'+
+    (saved?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:19px;height:19px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i700)" stroke-width="2" style="width:19px;height:19px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+
+    '</div>'+
+    '<div class="pd-act-btn" onclick="openMoreMenu(\''+id+'\',\''+esc(m.ti)+'\',true)">'+
+    '<svg viewBox="0 0 24 24" fill="currentColor" style="width:19px;height:19px"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>'+
+    '</div>'+
     '</div>'+
     '</div>'+
     // 핵심 정보
@@ -2348,9 +2467,8 @@ function openMdt(id){
       '<div style="font-family:var(--fkr);font-size:13px;color:var(--i600);line-height:1.75">'+m.d+'</div>'+
     '</div>'+
     '<div style="height:20px"></div>'+
-    '</div></div>'+
+    '</div>'+
     // CTA
-    '</div>'+  // 스크롤 영역 닫기
     '<div class="act-bar">'+
       (done
         ?'<div style="flex:1;height:50px;border-radius:13px;background:var(--s3);display:flex;align-items:center;justify-content:center;gap:7px;font-family:var(--fkr);font-size:13px;font-weight:600;color:var(--i400)">'+
@@ -2398,7 +2516,7 @@ function openDeal(id){
     +_buildDummyMap(d)
     +'</div></div>'
     +'<div class="act-bar">'
-    +'<div class="act-b out" onclick="toast(\'📞 \'+d.contact)">'+I.ph+'<span>전화하기</span></div>'
+    +'<div class="act-b out" onclick="dealCall(\''+id+'\')">'+I.ph+'<span>전화하기</span></div>'
     +'<div class="act-b sol" style="background:linear-gradient(135deg,#FF6B35,#FF3366)" onclick="openDealCoupon(\''+id+'\')">'+I.tag+'<span>혜택 받기</span></div>'
     +'</div>';
   var el=document.getElementById('ov-deal');el.innerHTML=html;el.classList.add('show');
@@ -2431,8 +2549,8 @@ function openSponDetail(id){
     +'<div style="background:var(--s2);border-radius:11px;padding:12px 14px;display:flex;align-items:center;gap:9px;margin-bottom:15px">'+I.pin+'<span style="font-family:var(--fkr);font-size:13px;color:var(--i700)">'+(a.addr||'Sydney, NSW 2000 (데모)')+'</span></div>'
     +_buildDummyMap(a)
     +'<div style="display:flex;gap:9px">'
-    +'<div style="flex:1;height:48px;border-radius:12px;background:var(--p50);border:1px solid var(--p200);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:var(--fkr);font-size:12px;font-weight:700;color:var(--p500)" onclick="toast(\'📞 전화 연결\');closeSpon()">'+I.ph+'전화하기</div>'
-    +'<div style="flex:2;height:48px;border-radius:12px;background:var(--p500);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:var(--fkr);font-size:12px;font-weight:700;color:#fff" onclick="toast(\'💬 문자 전송\');closeSpon()">'+I.msg+'문자하기</div>'
+    +'<div style="flex:1;height:48px;border-radius:12px;background:var(--p50);border:1px solid var(--p200);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:var(--fkr);font-size:12px;font-weight:700;color:var(--p500)" onclick="sponCall()">'+I.ph+'전화하기</div>'
+    +'<div style="flex:2;height:48px;border-radius:12px;background:var(--p500);display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-family:var(--fkr);font-size:12px;font-weight:700;color:#fff" onclick="sponMsg()">'+I.msg+'문자하기</div>'
     +'</div>'
     +'<div style="text-align:center;font-family:var(--fkr);font-size:9px;color:var(--i300);margin-top:11px">이 비즈니스는 광고 스폰서십을 통해 표시됩니다.</div>';
   document.getElementById('spon-bg').classList.add('show');
@@ -3234,7 +3352,7 @@ function setF(tk,f){FILTER[tk]=f;go(TAB);}
 function sCat(c){CS.cat=c;if(c==='중고거래'){CS.adOpt='';CS.bizType='';CS.logoAdded=false;CS.adOpen=false;}_doGo(2);setTimeout(function(){var ti=document.querySelector('[data-title-input]');if(ti)ti.placeholder=c==='알바·구인'?'예: 시티 카페 바리스타 구합니다':c==='렌트·쉐어'?'예: 시티 2인실 쉐어 구합니다':'예: 아이폰 13 판매합니다';refreshImgGrid();updateSubBtn();},0);}
 function openNotif(){if(isGuest()){showAuthPrompt('알림을');return;}var el=document.getElementById('ov-notif');el.innerHTML=buildNotifHTML();el.classList.add('show');}
 function closeNotif(){document.getElementById('ov-notif').classList.remove('show');}
-function openSearch(){SQ='';STAB=0;var el=document.getElementById('ov-search');el.innerHTML=buildSearchHTML();el.classList.add('show');setTimeout(function(){var i=document.getElementById('sq');if(i)i.focus();},300);}
+function openSearch(){if(isGuest()){showAuthPrompt('검색을');return;}SQ='';STAB=0;var el=document.getElementById('ov-search');el.innerHTML=buildSearchHTML();el.classList.add('show');setTimeout(function(){var i=document.getElementById('sq');if(i)i.focus();},300);}
 function closeSearch(){document.getElementById('ov-search').classList.remove('show');}
 function rSrch(){
   // 탭바 갱신 (SQ 있을 때만 표시)
@@ -3283,10 +3401,12 @@ function tick(){var n=new Date(),h=n.getHours(),m=n.getMinutes();var el=document
   document.querySelector('.phone-frame').appendChild(dlg);
 })();
 
-// doMktToggle
-function doMktToggle(id){var m=MARKET.find(function(x){return x.id===id;});if(!m)return;toggleComplete(id,'중고거래','sell',function(){openMdt(id);});}
-
-go(0);tick();setInterval(tick,30000);
+// do
+(function(){
+  tick();
+  setInterval(tick,30000);
+  _doGo(0);
+})();
 </script>
 </body>
 </html>
