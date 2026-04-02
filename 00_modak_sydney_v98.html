@@ -2153,150 +2153,12 @@ function faCard(a){
 function buildFeed(posts){var pos=adPos(posts.length),html='';for(var i=0;i<posts.length;i++){if(!posts[i])continue;html+=pCard(posts[i]);if(pos.has(i)){var a=nextAd();if(a)html+=faCard(a);}}return html;}
 
 
-function sharePost(id, title) {
-  var shareTitle = title || 'MODAK 게시물';
-  var shareUrl = 'https://modak.app/post/' + id;
-  var existing = document.getElementById('share-bg');
-  if (existing) existing.remove();
-  var sheet = document.createElement('div');
-  sheet.id = 'share-bg';
-  sheet.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.4);z-index:9999;display:flex;align-items:flex-end';
-  sheet.onclick = function(e){ if(e.target===sheet) sheet.remove(); };
-  sheet.innerHTML = '<div style="width:100%;background:#fff;border-radius:20px 20px 0 0;padding:0 0 34px;max-width:480px;margin:0 auto" onclick="event.stopPropagation()">'
-    + '<div style="width:36px;height:4px;background:#e0e0e0;border-radius:2px;margin:12px auto 16px"></div>'
-    + '<div style="font-family:var(--fkr);font-size:16px;font-weight:700;color:var(--i800);padding:0 20px 16px">공유하기</div>'
-    + '<div style="display:flex;padding:0 12px;gap:4px">'
-    + '<div onclick="document.getElementById(\'share-bg\').remove();toast(\'카카오톡으로 공유됐어요 💬\')" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#FEE500;display:flex;align-items:center;justify-content:center;font-size:26px">💬</div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">카카오톡</span></div>'
-    + '<div onclick="document.getElementById(\'share-bg\').remove();if(navigator.clipboard)navigator.clipboard.writeText(\''+shareUrl+'\');toast(\'링크가 복사됐어요 🔗\')" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#f2f3f5;display:flex;align-items:center;justify-content:center"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#555\" stroke-width=\"2\" style=\"width:22px;height:22px\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"/><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"/></svg></div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">링크 복사</span></div>'
-    + '<div onclick="document.getElementById(\'share-bg\').remove();toast(\'문자로 공유됐어요 ✉️\')" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#34C759;display:flex;align-items:center;justify-content:center;font-size:26px">✉️</div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">문자</span></div>'
-    + '<div onclick="document.getElementById(\'share-bg\').remove();if(navigator.share){navigator.share({title:\''+shareTitle+'\',url:\''+shareUrl+'\'})}else{toast(\'공유 기능은 앱에서 지원돼요\')}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#f2f3f5;display:flex;align-items:center;justify-content:center"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#555\" stroke-width=\"2\" style=\"width:22px;height:22px\"><circle cx=\"12\" cy=\"12\" r=\"1\"/><circle cx=\"19\" cy=\"12\" r=\"1\"/><circle cx=\"5\" cy=\"12\" r=\"1\"/></svg></div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">더보기</span></div>'
-    + '</div></div>';
-  document.querySelector('.phone-frame').appendChild(sheet);
-}
 
 
-function sharePost(id,title){
-  var old=document.getElementById("share-bg");if(old)old.remove();
-  var bg=document.createElement("div");
-  bg.id="share-bg";
-  bg.style.cssText="position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:flex-end";
-  bg.onclick=function(e){if(e.target===bg)bg.remove();};
-  var s=document.createElement("div");
-  s.style.cssText="width:100%;background:#fff;border-radius:20px 20px 0 0;padding-bottom:34px";
-  s.onclick=function(e){e.stopPropagation();};
-  var hd=document.createElement("div");hd.style.cssText="width:36px;height:4px;background:#ddd;border-radius:2px;margin:12px auto 16px";s.appendChild(hd);
-  var ttl=document.createElement("div");ttl.style.cssText="font-family:var(--fkr);font-size:16px;font-weight:700;padding:0 20px 16px";ttl.textContent="공유하기";s.appendChild(ttl);
-  var row=document.createElement("div");row.style.cssText="display:flex;padding:0 8px";
-  var url="https://modak.app/post/"+id;
-  function mkB(em,lb,bg2,fn2){
-    var b=document.createElement("div");b.style.cssText="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer";
-    var ic=document.createElement("div");ic.style.cssText="width:52px;height:52px;border-radius:50%;background:"+bg2+";display:flex;align-items:center;justify-content:center;font-size:22px";
-    ic.textContent=em;
-    var sp=document.createElement("span");sp.style.cssText="font-family:var(--fkr);font-size:11px";
-    sp.textContent=lb;
-    b.appendChild(ic);b.appendChild(sp);
-    b.onclick=function(){bg.remove();fn2();};
-    return b;
-  }
-  row.appendChild(mkB("💬","카카오톡","#FEE500",function(){toast("카카오톡 공유됨");}));
-  row.appendChild(mkB("🔗","링크 복사","#f0f2f5",function(){if(navigator.clipboard)navigator.clipboard.writeText(url);toast("링크 복사됨");}));
-  row.appendChild(mkB("✉️","문자","#34C759",function(){toast("문자 공유됨");}));
-  row.appendChild(mkB("...","더보기","#f0f2f5",function(){if(navigator.share)navigator.share({title:title||"MODAK",url:url});else toast("더보기");}));
-  s.appendChild(row);bg.appendChild(s);
-  document.querySelector(".phone-frame").appendChild(bg);
-}
 
-function sharePost(id,title){
-  var old=document.getElementById("share-bg");if(old)old.remove();
-  var bg=document.createElement("div");
-  bg.id="share-bg";
-  bg.style.cssText="position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:flex-end";
-  bg.onclick=function(e){if(e.target===bg)bg.remove();};
-  var s=document.createElement("div");
-  s.style.cssText="width:100%;background:#fff;border-radius:20px 20px 0 0;padding-bottom:34px";
-  s.onclick=function(e){e.stopPropagation();};
-  var hd=document.createElement("div");hd.style.cssText="width:36px;height:4px;background:#ddd;border-radius:2px;margin:12px auto 16px";s.appendChild(hd);
-  var ttl=document.createElement("div");ttl.style.cssText="font-family:var(--fkr);font-size:16px;font-weight:700;padding:0 20px 16px";ttl.textContent="공유하기";s.appendChild(ttl);
-  var row=document.createElement("div");row.style.cssText="display:flex;padding:0 8px";
-  var url="https://modak.app/post/"+id;
-  function mkB(em,lb,bg2,fn2){
-    var b=document.createElement("div");b.style.cssText="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer";
-    var ic=document.createElement("div");ic.style.cssText="width:52px;height:52px;border-radius:50%;background:"+bg2+";display:flex;align-items:center;justify-content:center;font-size:22px";
-    ic.textContent=em;
-    var sp=document.createElement("span");sp.style.cssText="font-family:var(--fkr);font-size:11px";
-    sp.textContent=lb;
-    b.appendChild(ic);b.appendChild(sp);
-    b.onclick=function(){bg.remove();fn2();};
-    return b;
-  }
-  row.appendChild(mkB("💬","카카오톡","#FEE500",function(){toast("카카오톡 공유됨");}));
-  row.appendChild(mkB("🔗","링크 복사","#f0f2f5",function(){if(navigator.clipboard)navigator.clipboard.writeText(url);toast("링크 복사됨");}));
-  row.appendChild(mkB("✉️","문자","#34C759",function(){toast("문자 공유됨");}));
-  row.appendChild(mkB("...","더보기","#f0f2f5",function(){if(navigator.share)navigator.share({title:title||"MODAK",url:url});else toast("더보기");}));
-  s.appendChild(row);bg.appendChild(s);
-  document.querySelector(".phone-frame").appendChild(bg);
-}
 
-function sharePost(id){
-  var all=JOBS.concat(ROOMS).concat(MARKET);
-  var post=all.find(function(x){return x.id===id;});
-  var title=post?(post.ti||post.title||''):'MODAK';
-  var old=document.getElementById("share-bg");if(old)old.remove();
-  var bg=document.createElement("div");
-  bg.id="share-bg";
-  bg.style.cssText="position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:flex-end";
-  bg.onclick=function(e){if(e.target===bg)bg.remove();};
-  var s=document.createElement("div");
-  s.style.cssText="width:100%;background:#fff;border-radius:20px 20px 0 0;padding-bottom:34px";
-  s.onclick=function(e){e.stopPropagation();};
-  var hd=document.createElement("div");hd.style.cssText="width:36px;height:4px;background:#ddd;border-radius:2px;margin:12px auto 16px";s.appendChild(hd);
-  var ttl=document.createElement("div");ttl.style.cssText="font-family:var(--fkr);font-size:16px;font-weight:700;padding:0 20px 16px";
-  ttl.textContent="공유하기";s.appendChild(ttl);
-  var row=document.createElement("div");row.style.cssText="display:flex;padding:0 8px";
-  var url="https://modak.app/post/"+id;
-  function mkB(em,lb,bg2,fn2){
-    var b=document.createElement("div");b.style.cssText="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer";
-    var ic=document.createElement("div");ic.style.cssText="width:52px;height:52px;border-radius:50%;background:"+bg2+";display:flex;align-items:center;justify-content:center;font-size:22px";
-    ic.textContent=em;
-    var sp=document.createElement("span");sp.style.cssText="font-family:var(--fkr);font-size:11px";
-    sp.textContent=lb;
-    b.appendChild(ic);b.appendChild(sp);
-    b.onclick=function(){bg.remove();fn2();};
-    return b;
-  }
-  row.appendChild(mkB("💬","카카오톡","#FEE500",function(){toast("카카오톡 공유됨");}));
-  row.appendChild(mkB("🔗","링크 복사","#f0f2f5",function(){if(navigator.clipboard)navigator.clipboard.writeText(url);toast("링크 복사됨");}));
-  row.appendChild(mkB("✉️","문자","#34C759",function(){toast("문자 공유됨");}));
-  row.appendChild(mkB("...","더보기","#f0f2f5",function(){if(navigator.share)navigator.share({title:title,url:url});else toast("더보기");}));
-  s.appendChild(row);bg.appendChild(s);
-  document.querySelector(".phone-frame").appendChild(bg);
-}
 
-function sharePost(id){
-  var all=JOBS.concat(ROOMS).concat(MARKET);
-  var post=all.find(function(x){return x.id===id;});
-  var title=post?(post.ti||post.title||''):'MODAK';
-  var old=document.getElementById("share-bg");if(old)old.remove();
-  var bg=document.createElement("div");
-  bg.id="share-bg";
-  bg.style.cssText="position:absolute;inset:0;background:rgba(0,0,0,.45);z-index:9999;display:flex;align-items:flex-end";
-  bg.onclick=function(e){if(e.target===bg)bg.remove();};
-  var s=document.createElement("div");
-  s.style.cssText="width:100%;background:#fff;border-radius:20px 20px 0 0;padding-bottom:34px";
-  s.onclick=function(e){e.stopPropagation();};
-  var hd=document.createElement("div");hd.style.cssText="width:36px;height:4px;background:#ddd;border-radius:2px;margin:12px auto 16px";s.appendChild(hd);
-  var ttl=document.createElement("div");ttl.style.cssText="font-family:var(--fkr);font-size:16px;font-weight:700;padding:0 20px 16px";
-  ttl.textContent="공유하기";s.appendChild(ttl);
-  var row=document.createElement("div");row.style.cssText="display:flex;padding:0 8px";
-  var url="https://modak.app/post/"+id;
-  function mkB(em,lb,bg2,fn2){var b=document.createElement("div");b.style.cssText="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer";var ic=document.createElement("div");ic.style.cssText="width:52px;height:52px;border-radius:50%;background:"+bg2+";display:flex;align-items:center;justify-content:center;font-size:22px";ic.textContent=em;var sp=document.createElement("span");sp.style.cssText="font-family:var(--fkr);font-size:11px";sp.textContent=lb;b.appendChild(ic);b.appendChild(sp);b.onclick=function(){bg.remove();fn2();};return b;}
-  row.appendChild(mkB("💬","카카오톡","#FEE500",function(){toast("카카오톡 공유됨");}));
-  row.appendChild(mkB("🔗","링크 복사","#f0f2f5",function(){if(navigator.clipboard)navigator.clipboard.writeText(url);toast("링크 복사됨");}));
-  row.appendChild(mkB("✉️","문자","#34C759",function(){toast("문자 공유됨");}));
-  row.appendChild(mkB("...","더보기","#f0f2f5",function(){if(navigator.share)navigator.share({title:title,url:url});else toast("더보기");}));
-  s.appendChild(row);bg.appendChild(s);
-  document.querySelector(".phone-frame").appendChild(bg);
-}
+
 
 function sharePost(id){
   var all=JOBS.concat(ROOMS).concat(MARKET);var post=all.find(function(x){return x.id===id;});var title=post?(post.ti||''):'MODAK';
@@ -2383,13 +2245,8 @@ function renderPd(p){
   var html='<div class="pd-img">'+p.e+'<div class="pd-cnt">1 / 1</div>'
     +'<div class="pd-back" onclick="closePd()">'+I.bk+'</div>'
     +'<div class="pd-actions">'
-    '<div class="pd-act-btn" onclick="sharePost(\''+id+'\')">&#x1F517;</div>'
-    +'<div class="pd-act-btn" onclick="sharePost(\''+id+"\',\'"+'esc(p.ti)+"\')" style="font-size:17px">&#x1F517;</div>'
-    +'<div class="pd-act-btn" onclick="sharePost(\''+'id+"\',\'"+'esc(p.ti)+"\')" style="font-size:17px">&#x1F517;</div>'
-    +'<div class="pd-act-btn" onclick="sharePost(''+id+'',''+esc(p.ti)+'')"><svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>'
-    +'<div class="pd-act-btn'+(fav?' fav':'')+'" onclick="toggleFavPd(\''+id+'\')">'+(fav?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+'</div>'
-    +'<div class="pd-act-btn" onclick="openReport(\''+id+'\',\''+esc(p.ti)+'\')"><svg viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'
-    +'</div></div>'
+    '<div class="pd-act-btn'+(fav?' fav':'')+'" onclick="toggleFavPd(\''+id+'\')">'+(fav?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+'</div>'
+    '</div></div>'
     +'<div class="scr"><div>'
     +'<div class="pd-sec"><div style="display:flex;align-items:center;gap:11px;margin-bottom:15px"><div class="pd-uav">'+avatarHtml(p.a,38,12)+'</div><div><div style="font-family:var(--fkr);font-size:13px;font-weight:700;color:var(--i800)">'+p.a+'</div><div style="display:flex;align-items:center;gap:4px;margin-top:3px">'+I.pin+'<span style="font-family:var(--fkr);font-size:11px;color:var(--i300)">'+p.s+'</span></div></div></div>'
     +'<div style="display:flex;align-items:center;gap:6px;margin-bottom:11px"><span class="tg '+cc+'">'+p.t+'</span>'+(done?'<span class="tg-done">'+lbl+'</span>':'')+'</div>'
@@ -2453,14 +2310,12 @@ function openMdt(id){
     // floating 내비 버튼 — renderPd와 동일 구조
     '<div class="pd-back" onclick="closeMdt()">'+I.bk+'</div>'+
     '<div class="pd-actions">'+
-      '<div class="pd-act-btn" onclick="sharePost(\''+id+'\')">&#x1F517;</div>'+
-      '<div class="pd-act-btn" onclick="sharePost(\''+id+'\')">&#x1F517;</div>'+
-      '<div class="pd-act-btn" onclick="sharePost(\''+id+'\')">&#x1F517;</div>'+
-      '<div class="pd-act-btn" onclick="sharePost(\''+id+"\',\'"+'esc(m.ti)+"\')" style="font-size:17px">&#x1F517;</div>'+
-      '<div class="pd-act-btn" onclick="sharePost(\''+'id+"\',\'"+'esc(m.ti)+"\')" style="font-size:17px">&#x1F517;</div>'+
-      '<div class="pd-act-btn" onclick="sharePost(''+id+'',''+esc(m.ti)+'')"><svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>'+
+      
+      
+      
+      
       '<div class="pd-act-btn'+(saved?' fav':'')+'" onclick="toggleMdtSave(\''+id+'\')">'+(saved?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+'</div>'+
-      '<div class="pd-act-btn" onclick="openReport(\''+id+'\',\''+esc(m.ti)+'\')"><svg viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
+      
     '</div>'+
     '</div>'+
     // 핵심 정보
