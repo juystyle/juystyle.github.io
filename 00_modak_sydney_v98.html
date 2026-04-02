@@ -2152,6 +2152,28 @@ function faCard(a){
 }
 function buildFeed(posts){var pos=adPos(posts.length),html='';for(var i=0;i<posts.length;i++){if(!posts[i])continue;html+=pCard(posts[i]);if(pos.has(i)){var a=nextAd();if(a)html+=faCard(a);}}return html;}
 
+
+function sharePost(id, title) {
+  var shareTitle = title || 'MODAK 게시물';
+  var shareUrl = 'https://modak.app/post/' + id;
+  var existing = document.getElementById('share-bg');
+  if (existing) existing.remove();
+  var sheet = document.createElement('div');
+  sheet.id = 'share-bg';
+  sheet.style.cssText = 'position:absolute;inset:0;background:rgba(0,0,0,0.4);z-index:9999;display:flex;align-items:flex-end';
+  sheet.onclick = function(e){ if(e.target===sheet) sheet.remove(); };
+  sheet.innerHTML = '<div style="width:100%;background:#fff;border-radius:20px 20px 0 0;padding:0 0 34px;max-width:480px;margin:0 auto" onclick="event.stopPropagation()">'
+    + '<div style="width:36px;height:4px;background:#e0e0e0;border-radius:2px;margin:12px auto 16px"></div>'
+    + '<div style="font-family:var(--fkr);font-size:16px;font-weight:700;color:var(--i800);padding:0 20px 16px">공유하기</div>'
+    + '<div style="display:flex;padding:0 12px;gap:4px">'
+    + '<div onclick="document.getElementById(\'share-bg\').remove();toast(\'카카오톡으로 공유됐어요 💬\')" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#FEE500;display:flex;align-items:center;justify-content:center;font-size:26px">💬</div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">카카오톡</span></div>'
+    + '<div onclick="document.getElementById(\'share-bg\').remove();if(navigator.clipboard)navigator.clipboard.writeText(\''+shareUrl+'\');toast(\'링크가 복사됐어요 🔗\')" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#f2f3f5;display:flex;align-items:center;justify-content:center"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#555\" stroke-width=\"2\" style=\"width:22px;height:22px\"><path d=\"M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71\"/><path d=\"M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71\"/></svg></div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">링크 복사</span></div>'
+    + '<div onclick="document.getElementById(\'share-bg\').remove();toast(\'문자로 공유됐어요 ✉️\')" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#34C759;display:flex;align-items:center;justify-content:center;font-size:26px">✉️</div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">문자</span></div>'
+    + '<div onclick="document.getElementById(\'share-bg\').remove();if(navigator.share){navigator.share({title:\''+shareTitle+'\',url:\''+shareUrl+'\'})}else{toast(\'공유 기능은 앱에서 지원돼요\')}" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;cursor:pointer"><div style="width:52px;height:52px;border-radius:50%;background:#f2f3f5;display:flex;align-items:center;justify-content:center"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#555\" stroke-width=\"2\" style=\"width:22px;height:22px\"><circle cx=\"12\" cy=\"12\" r=\"1\"/><circle cx=\"19\" cy=\"12\" r=\"1\"/><circle cx=\"5\" cy=\"12\" r=\"1\"/></svg></div><span style="font-family:var(--fkr);font-size:11px;color:var(--i600)">더보기</span></div>'
+    + '</div></div>';
+  document.querySelector('.phone-frame').appendChild(sheet);
+}
+
 function openReport(postId,postTitle){
   RPT={postId:postId,postTitle:postTitle||'',reason:'',detail:''};
   var h=buildReportSheet(postTitle||'');
@@ -2220,6 +2242,7 @@ function renderPd(p){
   var html='<div class="pd-img">'+p.e+'<div class="pd-cnt">1 / 1</div>'
     +'<div class="pd-back" onclick="closePd()">'+I.bk+'</div>'
     +'<div class="pd-actions">'
+    +'<div class="pd-act-btn" onclick="sharePost(''+id+'',''+esc(p.ti)+'')"><svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>'
     +'<div class="pd-act-btn'+(fav?' fav':'')+'" onclick="toggleFavPd(\''+id+'\')">'+(fav?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+'</div>'
     +'<div class="pd-act-btn" onclick="openReport(\''+id+'\',\''+esc(p.ti)+'\')"><svg viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'
     +'</div></div>'
@@ -2286,6 +2309,7 @@ function openMdt(id){
     // floating 내비 버튼 — renderPd와 동일 구조
     '<div class="pd-back" onclick="closeMdt()">'+I.bk+'</div>'+
     '<div class="pd-actions">'+
+      '<div class="pd-act-btn" onclick="sharePost(''+id+'',''+esc(m.ti)+'')"><svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>'+
       '<div class="pd-act-btn'+(saved?' fav':'')+'" onclick="toggleMdtSave(\''+id+'\')">'+(saved?'<svg viewBox="0 0 24 24" fill="var(--p500)" stroke="var(--p500)" stroke-width="1" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="var(--i600)" stroke-width="2" style="width:22px;height:22px"><path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2z"/></svg>')+'</div>'+
       '<div class="pd-act-btn" onclick="openReport(\''+id+'\',\''+esc(m.ti)+'\')"><svg viewBox="0 0 24 24" fill="none" stroke="#FF3B30" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
     '</div>'+
