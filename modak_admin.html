@@ -52,6 +52,8 @@
   border-radius: 20px;
   padding: 40px 36px;
   width: 380px;
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
   display: flex; flex-direction: column; gap: 0;
 }
 .login-logo {
@@ -609,7 +611,7 @@ body {
     <div class="login-title">MODAK Admin</div>
     <div class="login-sub">관리자 계정으로 로그인하세요</div>
     <div class="login-label">이메일</div>
-    <input class="login-input" type="email" id="login-email" placeholder="admin@modak.com"
+    <input class="login-input" type="email" id="login-email" placeholder="admin@modak.app"
       onkeydown="if(event.key==='Enter')doLogin()"/>
     <div class="login-label">비밀번호</div>
     <input class="login-input" type="password" id="login-pw" placeholder="비밀번호 입력"
