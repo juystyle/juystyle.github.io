@@ -1,4 +1,4 @@
-# MODAK 법인 설립 후 서비스 가입 가이드
+# MODAK 법인 설립 후 서비스 가입 가이드(MODAK Group Pty Ltd)
 
 > 법인 설립 후 MODAK 앱 운영에 필요한 서비스 가입 순서와 비용 정리
 
